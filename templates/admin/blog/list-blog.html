@@ -1,0 +1,33 @@
+{% extends "../base.html" %}
+
+{% block content%}
+
+	
+    <div class="mdl-grid"><div style="float:right; margin: 10px 50px"><a href="/manage/article">New article</a></div>
+<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp" width="100%">
+  <thead>
+    <tr>
+      <th class="mdl-data-table__cell--non-numeric">Title</th>
+      <th>Category</th>
+      <th>Author</th>
+    </tr>
+  </thead>
+  <tbody>
+    {%for ar in articles%}
+    <tr>
+      <td class="mdl-data-table__cell--non-numeric">
+        <a href="/manage/article?id={{ar.id}}">{{ar.title}}</a>
+      </td>
+      
+      <td>{{ar.category.title}}</td>
+      <td>{{ar.author.nickname}}</td>
+    </tr>
+    {%end%}
+  </tbody>
+</table>
+</div>
+
+    {% end %}
+  
+
+

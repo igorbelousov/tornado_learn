@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Login</title>
+    <meta charset=UTF-8>
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.indigo-pink.min.css">
+<script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+<link rel="stylesheet" href="{{ static_url('css/style-admin.css') }}">
+<link rel="stylesheet" href="{{ static_url('css/reset.css') }}">
+
+<style>
+    .mdl-card{
+    width: 320px;
+    margin: 150px auto;
+    padding: 10px;
+    background: #FCFCFC;
+   
+}
+
+.mdl-card h6{
+    text-align: center;
+}
+
+.mdl-button{
+    font-size: 75%;
+}
+
+.error{
+    color:#DD0808;
+    text-align: center;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="mdl-card mdl-shadow--4dp">
+    
+  
+    
+  <form action="#">
+  <span class="error">Input is not a number!</span>
+  <div class="mdl-textfield mdl-js-textfield">
+    <input class="mdl-textfield__input" type="text" id="email">
+    <label class="mdl-textfield__label" for="email">E-mail...</label>
+  </div>
+  <div class="mdl-textfield mdl-js-textfield">
+    <input class="mdl-textfield__input" type="password" id="pass">
+    <label class="mdl-textfield__label" for="pass">Password...</label>
+  </div>
+
+    <a href="#" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Зарегестрироваться</a> <input type="submit" class=" mdl-button mdl-js-button" >
+  
+</form>
+    </div>
+
+
+</body>
+</html>

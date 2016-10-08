@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content%}
+User name ---- {% if user%}<a href="/profile">{{user.nickname}}</a>{%end%}
+
+<form method="get" action="" name=forms>
+    <input type="text" value="1" name=form>
+    <input type="text" value="1" name=name>
+
+    <input type="text" value="2" name=form>
+    <input type="text" value="2" name=name>
+    <input type="text" value="3" name=form>
+    <input type="text" value="3" name=name>
+
+    <input type="text" value="4" name=form>
+    <input type="text" value="4" name=name>
+{% module xsrf_form_html() %}
+<input type="submit">
+</form>
+
+{% if items%}
+  {{items}}
+{%end%}
+
+
+    {% end %}
+  
+
+

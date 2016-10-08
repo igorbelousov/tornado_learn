@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset=UTF-8>    
+    <title>{% block title %}{% end %} SHOP</title>        
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ static_url('css/style.css') }}">
+    <link rel="stylesheet" href="{{ static_url('css/reset.css') }}">
+    <script src="{{ static_url('js/modernizr.js') }}"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.indigo-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+
+    <style>     
+        .cd-main-content{
+            padding-top:50px;
+        }
+        
+        .md-48{
+            font-size: 32px;
+            margin: 5px 0 0  0;
+
+            color: #bdbdbd
+        }
+        
+        .basket-badge{
+            position: absolute;
+            margin: 12px 0 0;
+            
+        }
+    </style>
+</head>
+<body>
+<header class="cd-main-header">
+    <a class="cd-logo" href="#">The shoping engine</a>
+    <ul class="cd-header-buttons">
+        
+        <li><a class="cd-search-trigger" href="#cd-search" >Search<span></span></a></li>
+        <li><a  class="cd-user-trigger" href="#cd-user" id="basket"><i class="material-icons md-48">shopping_basket<span class="mdl-badge mdl-badge--overlap basket-badge mdl-badge--no-background" data-badge="3" "></span></i></a><span for="basket" class="mdl-tooltip">Перейти в корзину</span></li>
+        <li><a  class="cd-user-trigger" href="#cd-user" id="user"><i class="material-icons md-48">person</i></a><span for="user" class="mdl-tooltip">Ваш профиль</span>
+        <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
+    for="user">
+  <li class="mdl-menu__item">Профиль</li>
+  <li class="mdl-menu__item">Заказы</li>
+  <li class="mdl-menu__item  mdl-menu__item--full-bleed-divider">Переписка</li>
+  <li disabled class="mdl-menu__item">Выйти</li>
+</ul></li>
+        <li><a class="cd-nav-trigger" href="#cd-primary-nav">Menu<span></span></a></li>
+    </ul> <!-- cd-header-buttons -->
+    
+</header>
+
+<main class="cd-main-content">
+{% block content%}
+
+	
+{% end %}
+</main>
+	<div class="cd-overlay"></div>
+	<nav class="cd-nav">
+		<ul id="cd-primary-nav" class="cd-primary-nav is-fixed">
+			<li class="has-children">
+				<a href="#">Парусный спорт</a>
+				<ul class="cd-secondary-nav is-hidden">
+					<li class="go-back"><a href="#0">Меню</a></li>					
+					<li class="has-children">
+						<a href="#">Палубное оборудование</a>
+						<ul class="is-hidden">
+							<li class="go-back"><a href="#0">ПАРУСНЫЙ СПОРТ</a></li>
+							
+							
+							
+							<li><a href="/shop/bloki">Такелажные блоки</a></li>
+							<li><a href="/shop/lebedki">Яхтенные лебедки</a></li>
+							<li><a href="/shop/stopora">Стопора, организаторы</a></li>
+							<li><a href="/shop/obtekateli-i-zakrutki">Обтекатели и закрутки</a></li>
+							<li><a href="/shop/pogony-i-karetki">Погоны и каретки</a></li>
+							<li><a href="/shop/udliniteli-rumpelya">Удлинители румпеля</a></li>
+							<li><a href="/shop/furnitura">Фурнитура</a></li>
+							<li><a href="/shop/raznoe">Разное</a></li>
+							<li><a href="/shop/rasprodazha">Распродажа</a></li>
+						</ul>
+					</li>
+					<li class="has-children">
+						<a href="#">Яхтенные троса</a>
+						<ul class="is-hidden">
+							<li class="go-back"><a href="#0">ПАРУСНЫЙ СПОРТ</a></li>							
+							<li><a href="/shop/racing-line">Racing line</a></li>
+							<li><a href="/shop/sport-line">Sport line</a></li>
+							<li><a href="/shop/cruising-line">Cruising line</a></li>
+							<li><a href="/shop/dock-line">Dock line</a></li>
+							<li><a href="/shop/universal-line">Universal line</a></li>
+						</ul>
+					</li>
+					<li class="has-children">
+						<a href="#">Аксессуары</a>
+						<ul class="is-hidden">
+							<li class="go-back"><a href="#0">ПАРУСНЫЙ СПОРТ</a></li>							
+							<li><a href="#">Рюкзаки и сумки</a></li>
+							<li><a href="#">Очки для яхтинга</a></li>
+							<li><a href="#">Страховочные жилеты</a></li>
+							<li><a href="#">Яхтенные перчатки</a></li>
+						</ul>
+					</li>
+					<li class="has-children">
+						<a href="#">Одежда</a>
+						<ul class="is-hidden">
+							<li class="go-back"><a href="#0">ПАРУСНЫЙ СПОРТ</a></li>
+							<li class="see-all"><a href="#">All Tops</a></li>
+							<li><a href="#">Обувь яхтенная</a></li>
+							<li><a href="#">Куртки яхтенные</a></li>
+							<li><a href="#">Флиски</a></li>
+							<li><a href="#">Штаны яхтенные</a></li>
+							<li><a href="#">Шорты яхтенные</a></li>
+							<li><a href="#">Термобелье</a></li>
+							<li><a href="#">Футболки и поло</a></li>
+							<li><a href="#">Кепки</a></li>							
+						</ul>
+					</li>		
+				</ul>
+			</li>	
+			<li class="has-children">
+				<a href="#">Одежда</a>
+				<ul class="cd-secondary-nav is-hidden">
+					<li class="go-back"><a href="#0">Меню</a></li>					
+					<li class="has-children">
+						<a href="#">Куртки, футболки, поло</a>
+						<ul class="is-hidden">
+							<li class="go-back"><a href="#0">Куртки, футболки, поло</a></li>							
+							<li><a href="/shop/bloki">Куртки для яхтинга</a></li>
+							<li><a href="/shop/lebedki">Куртки для туризма на воде</a></li>
+							<li><a href="/shop/stopora">Футболки и поло</a></li>
+							<li><a href="/shop/obtekateli-i-zakrutki">Флиски</a></li>
+						</ul>
+					</li>
+					<li class="has-children">
+						<a href="#">Штаны, шорты</a>
+						<ul class="is-hidden">
+							<li class="go-back"><a href="#0">ПАРУСНЫЙ СПОРТ</a></li>							
+							<li><a href="/shop/racing-line">Штаны яхтенные</a></li>
+							<li><a href="/shop/sport-line">Шорты яхтенные</a></li>
+							<li><a href="/shop/cruising-line">Штаны для туризма на воде</a></li>							
+						</ul>
+					</li>
+					<li class="has-children">
+						<a href="#">Термобелье, неопрен</a>
+						<ul class="is-hidden">
+							<li class="go-back"><a href="#0">ПАРУСНЫЙ СПОРТ</a></li>							
+							<li><a href="#">Термобелье</a></li>
+							<li><a href="#">Неопрен</a></li>
+						</ul>
+					</li>
+					<li class="has-children">
+						<a href="#">Обувь</a>
+						<ul class="is-hidden">
+							<li class="go-back"><a href="#0">ПАРУСНЫЙ СПОРТ</a></li>
+							<li><a href="#">Для яхты</a></li>		
+						</ul>
+					</li>
+					
+					<li class="has-children">
+						<a href="#">Головные уборы</a>
+						<ul class="is-hidden">
+							<li class="go-back"><a href="#0">ПАРУСНЫЙ СПОРТ</a></li>							
+							<li><a href="#">Кепки</a></li>
+							<li><a href="#">Шапки</a></li>
+							<li><a href="#">Балаклавы</a></li>
+						</ul>
+					</li>					
+				</ul>
+			</li>			
+			<li><a href="#">Краска</a></li>
+            <li class="has-children">
+				<a href="#">Тех поддержка</a>
+				<ul class="cd-secondary-nav is-hidden">
+					<li class="go-back"><a href="#0">Меню</a></li>					
+					<li class="has-children">
+						<a href="#">Статьи</a>
+						<ul class="is-hidden">
+							<li class="go-back"><a href="#0">Статьи</a></li>							
+							<li><a href="/shop/bloki">Куртки для яхтинга</a></li>
+							<li><a href="/shop/lebedki">Куртки для туризма на воде</a></li>
+							<li><a href="/shop/stopora">Футболки и поло</a></li>
+							<li><a href="/shop/obtekateli-i-zakrutki">Флиски</a></li>
+						</ul>
+					</li>
+					<li class="has-children">
+						<a href="#">Диограммы</a>
+						<ul class="is-hidden">
+							<li class="go-back"><a href="#0">Тех поддержка</a></li>							
+							<li><a href="/shop/racing-line">Монотипы</a></li>
+							<li><a href="/shop/sport-line">Системы</a></li>
+							<li><a href="/shop/cruising-line">Погоны и каретки</a></li>
+                            <li><a href="/shop/cruising-line">Системы грота-шкота</a></li>
+						</ul>
+					</li>
+					<li class="has-children">
+						<a href="#">Калькулятор</a>
+						<ul class="is-hidden">
+							<li class="go-back"><a href="#0">Тех поддержка</a></li>							
+							<li><a href="#">Нагрузка на стаксель</a></li>
+							<li><a href="#">Нагрузка на грот</a></li>
+                            
+						</ul>
+					</li>
+					<li class="has-children">
+						<a href="#">Вопросы и ответы</a>
+						<ul class="is-hidden">
+							<li class="go-back"><a href="#0">Тех поддержка</a></li>
+							<li><a href="#">Carbo Air® Blocks</a></li>
+                            <li><a href="#">Classic Blocks</a></li>
+                            <li><a href="#">Ratchet Blocks</a></li>
+                            <li><a href="#">Big boat Blocks</a></li>
+                            <li><a href="#">ESP Blocks</a></li>
+                            <li><a href="#">Soft attach Blocks</a></li>
+                            <li><a href="#">Classic Blocks</a></li>	
+						</ul>
+					</li>
+					
+					<li class="has-children">
+						<a href="#">Как выбрать</a>
+						<ul class="is-hidden">
+							<li class="go-back"><a href="#0">Тех поддержка</a></li>							
+							<li><a href="#">Блоки для яхты</a></li>
+							<li><a href="#">Блоки для большой яхты</a></li>
+							<li><a href="#">Погоны и каретки</a></li>
+                            <li><a href="#">Лебедки</a></li>
+						</ul>
+					</li>
+                    <li class="has-children">
+						<a href="#">Инструкции</a>
+						<ul class="is-hidden">
+							<li class="go-back"><a href="#0">Тех поддержка</a></li>							
+							<li><a href="#">Блоки</a></li>
+							<li><a href="#">Каретки</a></li>
+							<li><a href="#">Стопора</a></li>
+						</ul>
+					</li>	
+				</ul>
+			</li>	
+				
+		</ul> <!-- primary-nav -->
+	</nav> <!-- cd-nav -->
+	<div id="cd-search" class="cd-search">
+		<form>
+			<input type="search" placeholder="Поиск...">
+		</form>
+	</div>
+<footer >
+  <p>sads</p>
+</footer>   
+<script src="{{ static_url('js/jquery-2.1.1.js') }}"></script>
+<script src="{{ static_url('js/jquery.mobile.custom.min.js') }}"></script>
+<script src="{{ static_url('js/jquery.mixitup.min.js') }}"></script>
+<script src="{{ static_url('js/main.js') }}"></script> <!-- Resource jQuery -->
+</body>
+</html>

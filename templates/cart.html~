@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content%}
+
+
+<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp" width="100%">
+  <thead>
+    <tr>
+      <th class="mdl-data-table__cell--non-numeric ">Cart #</th>
+      <th>cart User</th>
+      <th>Cart item</th>
+	<th>edit</th>
+	<th>remove</th>		
+    </tr>
+  </thead>
+  <tbody>
+    
+    
+
+
+	{% for cart in carts%}
+<tr>
+      <td class="mdl-data-table__cell--non-numeric">{{cart.id}}</td>
+      <td>{{cart.user_id}}</td>
+      <td>{%for x in cart.items%}
+		{{x.item_id.title}} --- {{x.qty}}<br>
+{%end%}</td>
+<td><a href="#"><i class="material-icons">create</i></a></td>
+<td><a href="#"><i class="material-icons">remove_circle</i></a></td>
+    </tr>
+
+{%end%}
+  </tbody>
+</table>
+
+
+
+    {% end %}
+  
+
+
