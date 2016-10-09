@@ -4,8 +4,15 @@
 
 
 <div class="mdl-grid">
-photo:  <img src="{{ static_url('images/') }}{{article.image}}" ><br>
-title:  {{article.title}}
+    <form action="" method="post" enctype="multipart/form-data">
+        {%for a in form%}
+        {{a .label }} - 
+            {%raw a%}<br>
+        {%end%}
+        {% module xsrf_form_html() %}
+        <input type="submit">
+    </form>
+
 </div>
     {% end %}
       
