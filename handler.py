@@ -11,8 +11,14 @@ from models import Article, User, PostCategory, db_session, Test
 from sqlalchemy import desc
 
 from wtforms_alchemy import ModelForm, ModelFormField, ModelFieldList
-from wtforms.fields import FormField
+# from wtforms.fields import FormField
 from wtforms.ext.sqlalchemy.fields import QuerySelectField
+
+from wtforms.fields import IntegerField, StringField, PasswordField, TextField, TextAreaField, SelectField
+from wtforms.validators import Required, Optional 
+from wtforms_tornado import Form
+
+
 #views
 __UPLOADS__ =  os.path.join('media/images/')
 
@@ -20,12 +26,19 @@ class BaseHandler(tornado.web.RequestHandler):
     @tornado.web.removeslash
     def get_current_user(self):
         return self.get_secure_cookie("mechtari")
-
     
-class TForm(ModelForm):
+    def initialize(self):
+        self.session = db_session()
+
+    def on_finish(self):
+        self.session.close()
+
+class TForm(ModelForm, Form):
     class Meta:
         model = Test
-    
+        
+        
+
 class HomeHandler(BaseHandler):
     
     def get(self):
@@ -34,10 +47,10 @@ class HomeHandler(BaseHandler):
         
     def post(self):
         arg = self.request.arguments
-        form = TForm()
-        print (arg)
+        form = TForm(self.request.arguments)
+    
         if form.validate():
-            self.write('Hello ' )
+            self.write('Hello %s' %form.nickname.data )
         else:
             self.render("home.html", form=form)
         
@@ -205,22 +218,22 @@ class BlogPageHandler(BaseHandler):
 
 
 #admin views
-class CForm(ModelForm):
-    class Meta:
-        model = PostCategory
-        
-    
+# class CForm(Form):
+#     class Meta:
+#         model = PostCategory
+#         
+#     
 
-class AForm(ModelForm):
+class AForm(ModelForm, Form):
     def enabled_categories():
         return PostCategory.query.all()
     
     def enabled_users():
         return User.query.all()
-
     class Meta:
         model = Article
-        
+
+
     category = QuerySelectField(query_factory=enabled_categories,
                                 allow_blank=True)
     author = QuerySelectField(query_factory=enabled_users,
@@ -237,25 +250,21 @@ class AdminArticle(BaseHandler):
         id = self.get_argument("id", None)
         article = None
         form = AForm()
+
         if id:
             article = Article.query.filter_by(id = int(id)).one()
             form = AForm(obj = article)
+
+ 
         self.render("admin/blog/blog-page.html", article=article, form=form)
         
     def post(self):
-        form = AForm()
+              
+        form = AForm(self.request.arguments)
         
         id = self.get_argument('id', None)
-        title = self.get_argument('title')
-        slug = self.get_argument('slug')
-        category_id = self.get_argument('category')
-        content = self.get_argument('content')
-        author_id = self.get_argument('author')
-        description = self.get_argument('description')
-        seo_description = self.get_argument('seo_description')
-        seo_keywords = self.get_argument('seo_keywords')
-        seo_title = self.get_argument('seo_title')
-        
+
+
         try:
             f = self.request.files['file1'][0]
             image = f['filename']
@@ -268,40 +277,33 @@ class AdminArticle(BaseHandler):
             else:
                 self.finish('this is is not image file')
         except:
-            image = self.get_argument('image')
+            image = self.get_argument('image', None)
 
-        
         if form.validate():
+            
             if id:
                 ar = Article.query.filter_by(id=id).one()
                 if not ar: raise tornado.web.HTTPError(404)
-                ar.title = title
-                ar.slug = slug
-                ar.category_id = category_id
-                ar.content = content
-                ar.author_id = author_id
-                ar.description = description
-                ar.image = image
-                ar.seo_description = seo_description
-                ar.seo_keywords = seo_keywords
-                ar.seo_title = seo_title
+                form.populate_obj(ar)
+                
                 db_session.add(ar)
                 db_session.commit()
-
+            
                 self.redirect('/manage/articles')
             else:
                 while True:
-                    e = Article.query.filter_by(slug=slug).first()
+                    e = Article.query.filter_by(slug=form.data['slug']).first()
                     if not e: break
-                    slug += "-2"
-                ar = Article(title,  slug, category_id, content, author_id, description, image, seo_description, seo_keywords, seo_title)
+                    form.data['slug'] += "-2"
+                ar = Article(1,2,34,12,12)
+                form.populate_obj(ar)
                 db_session.add(ar)
                 try:
                     db_session.commit()
                 except:
                     db_session.rollback()
-
+            
                 self.redirect('/manage/articles')
                 
         else:
-            self.write('eror')
+            self.write('%s' %form.errors)
