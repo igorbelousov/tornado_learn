@@ -4,17 +4,12 @@ import os.path
 import datetime
 from sqlalchemy import create_engine
 from sqlalchemy import Table, Column, Integer, String, Text, MetaData, ForeignKey, SmallInteger, DateTime, Float
-
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import scoped_session, sessionmaker, relationship, backref
 
-
-
 basedir = os.path.abspath(os.path.dirname(__file__))
 Base = declarative_base()
-
 engine = create_engine('postgresql://postgres:UjhrB37@localhost/theshop', echo=False)
-
 db_session = scoped_session(sessionmaker(autocommit=False,
                                          autoflush=False,
                                          bind=engine))
@@ -24,29 +19,9 @@ Base.query = db_session.query_property()
 def init_db(engine):
   Base.metadata.create_all(bind=engine)
 
-
 #models
-
-
 ROLE_USER = 0
 ROLE_ADMIN = 1
-
-class Test(Base):
-    __tablename__ = 'test'
-    id = Column(Integer, primary_key = True)
-    nickname = Column(String(64), index = True, unique = True)
-    
-
-    
-    def __init__(self, nickname):
-        self.nickname = nickname
-        
-        
-
-    def __repr__(self):
-        return self.nickname
-
-
 
 class User(Base):
     __tablename__ = 'user'
@@ -55,18 +30,15 @@ class User(Base):
     email = Column(String(120), index = True, unique = True)
     password = Column(String(), index = True, unique = True)
     role = Column(SmallInteger, default = ROLE_USER)
-
     
     def __init__(self, nickname, email, password, role):
         self.nickname = nickname
         self.email = email
         self.password = password        
-        self.role = role
-        
+        self.role = role        
 
     def __repr__(self):
         return self.nickname
-
 
 #blog model
 class PostCategory(Base):
@@ -79,7 +51,6 @@ class PostCategory(Base):
     seo_description = Column(String(255))
     seo_keywords = Column(String(140))
 
-
     def __init__(self, title,  slug, description='',  seo_description='', seo_keywords='', seo_title='' ):
         self.title = title
         self.slug = slug
@@ -90,8 +61,6 @@ class PostCategory(Base):
 
     def __repr__(self):
         return self.title
-    
-   
 
 class Article(Base):
     __tablename__ = 'post'
@@ -125,13 +94,6 @@ class Article(Base):
     def __repr__(self):
         return '<Post %r>' % (self.title)
     
-   
-   
-
-
-    
 #starter
 if __name__ == "__main__":
     init_db(engine)
-
-

@@ -6,17 +6,12 @@ import tornado.httpserver
 import tornado.options
 from handler import HomeHandler, BlogListHandler, BlogPageHandler, AdminBlogList, AdminArticle 
 
-
-
-
 basedir = os.path.abspath(os.path.dirname(__file__))
-
 
 application = tornado.web.Application([
     (r"/", HomeHandler),
     (r"/blog", BlogListHandler),
-    (r"/blog/page", BlogPageHandler),
-    
+    (r"/blog/page", BlogPageHandler),    
     (r"/manage/articles", AdminBlogList),
     (r"/manage/article", AdminArticle)
 
@@ -28,10 +23,7 @@ application = tornado.web.Application([
     login_url= "/login",
     debug=True )
 
-
-
 #starter
 if __name__ == "__main__":
     application.listen(8888)
     tornado.ioloop.IOLoop.instance().start()
-
