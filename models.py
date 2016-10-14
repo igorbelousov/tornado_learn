@@ -65,12 +65,12 @@ class PostCategory(Base):
 class Article(Base):
     __tablename__ = 'post'
     id = Column(Integer, primary_key = True)
-    title = Column(String(255), info={'description': u'a это описание',  'label': u'Заголовок'})
-    slug = Column(String(255))
+    title = Column(String(255), info={'description': u'',  'label': u'Заголовок'})
+    slug = Column(String(255), info={'description': u'Название в адресной строке',  'label': u'URL'})
     image = Column(String)
     category_id = Column(Integer, ForeignKey('postcategory.id'))
     category = relationship("PostCategory", backref=backref('article', order_by=id))
-    content = Column(Text)
+    content = Column(Text, info={'description': u'Содержание Статьи',  'label': u'Содержание'})
     description = Column(String)
     seo_title = Column(String(255))
     seo_description = Column(String(255))

@@ -1,19 +1,67 @@
 {% extends "../base.html" %}
-
 {% block content%}
 
+    <div class="mdl-grid">
+        <form action="" method="post" enctype="multipart/form-data">{% autoescape None %}
+           
+            {{form.title.label}}  {{form.title.description}}<br>
+            {%raw form.title%}<br>
+             {{form.slug.label}}  {{form.slug.description}}<br>
+            {%raw form.slug%}<br>
+             {{form.content.label}}  {{form.content.description}}<br>
+            {%raw form.content%}<br>
+             {{form.image.label}}  {{form.image.description}}<br>
+            {%raw form.image%}<br>
+            {%if form.image.data%}
+            <img src="{{ static_url('images/') }}{{article.image}}" style="width: 100px"> <br>
+            {%end%}
+            {{form.category.label}}  {{form.category.description}}<br>
+            {%raw form.category%}<br>
+             {{form.author.label}}  {{form.author.description}}<br>
+            {%raw form.author%}<br>
+             {{form.description.label}}  {{form.description.description}}<br>
+            {%raw form.description%}<br>
+            
+            {{form.seo_title.label}}  {{form.seo_title.description}}<br>
+            {%raw form.seo_title%}<br>
+            {{form.seo_keywords.label}}  {{form.seo_keywords.description}}<br>
+            {%raw form.seo_keywords%}<br>
+            {{form.seo_description.label}}  {{form.seo_description.description}}<br>
+            {%raw form.seo_description%}<br>
+           
+            {% module xsrf_form_html() %}
+            <input type="submit">
+        </form>
+    
+    </div>
+    {%if not article%} 
+       <script type="text/javascript">document.getElementById("title").focus();</script>
 
-<div class="mdl-grid">
-    <form action="" method="post" enctype="multipart/form-data">{% autoescape None %}
-        {%for a in form%}
-        {{a.label}}  {{a.description}}- 
-            {%raw a%}<br>
-        {%end%}
-        {% module xsrf_form_html() %}
-        <input type="submit">
-    </form>
 
-</div>
-    {% end %}
-      
 
+<script type="text/javascript">
+(function($) {
+    var field = null;
+
+
+    field = {
+        id: '#slug',
+        dependency_ids: [],
+        dependency_list: [],
+        maxLength: 255
+    };
+
+    
+    field['dependency_ids'].push('#title');
+    field['dependency_list'].push('.title');
+    
+
+    $('.empty-form .slug').addClass('prepopulated_field');
+    $(field.id).data('dependency_list', field['dependency_list'])
+               .prepopulate(field['dependency_ids'], field.maxLength);
+
+})(django.jQuery);
+</script>
+
+{%end%}
+{% end %}

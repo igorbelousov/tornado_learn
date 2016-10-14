@@ -11,7 +11,7 @@ from models import Article, User, PostCategory, db_session
 from sqlalchemy import desc
 from wtforms_alchemy import ModelForm, ModelFormField, ModelFieldList
 from wtforms.ext.sqlalchemy.fields import QuerySelectField
-from wtforms.fields import IntegerField, StringField, PasswordField, TextField, TextAreaField, SelectField
+from wtforms.fields import IntegerField, StringField, PasswordField, TextField, TextAreaField, SelectField, FileField
 from wtforms.validators import Required, Optional 
 from wtforms_tornado import Form
 
@@ -44,8 +44,9 @@ class BlogListHandler(BaseHandler):
 
 class BlogPageHandler(BaseHandler):
     
-    def get(self):       
-        self.render("blog/blog-page.html")
+    def get(self, id):
+        post = Article.query.filter_by(id=id).one()
+        self.render("blog/blog-page.html", post=post)
         
 class AForm(ModelForm, Form):
     
@@ -62,6 +63,7 @@ class AForm(ModelForm, Form):
     author = QuerySelectField(query_factory=enabled_users,
                                 allow_blank=True)
     
+    image = FileField()
 class AdminBlogList(BaseHandler):
     
     def get(self):
@@ -80,21 +82,26 @@ class AdminArticle(BaseHandler):
         
     def post(self):              
         form = AForm(self.request.arguments)        
-        id = self.get_argument('id', None)        
+        id = self.get_argument('id', None)
+        
         try:
-            f = self.request.files['file1'][0]
+            f = self.request.files['image'][0]
             image = f['filename']
             extn = os.path.splitext(image)[1]
             if extn in ('.jpg','.png','.bmp','.jpeg'):
                 name =str(int(random.random()*10000000000000))
-                fh = open(__UPLOADS__ + name + extn, 'w')
+                fh = open(__UPLOADS__ + name + extn, 'wb')
                 fh.write(f['body'])
                 image = name+extn
+                
+    
             else:
                 self.finish('this is is not image file')
         except:
             image = self.get_argument('image', None)
-        if form.validate():            
+        if form.validate():
+            form.image.data = image 
+            print(form.image.data )  
             if id:
                 ar = Article.query.filter_by(id=id).one()
                 if not ar: raise tornado.web.HTTPError(404)
