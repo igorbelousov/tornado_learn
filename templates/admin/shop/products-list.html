@@ -1,9 +1,42 @@
-{% extends "base.html" %}
+{% extends "../base.html" %}
 
 {% block content%}
 
-home page
-
+	
+    <div class="mdl-grid"><div style="float:right; margin: 10px 50px"><a href="/manage/product">New product</a></div>
+<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp" width="100%">
+  <thead>
+    <tr>
+        <th class="mdl-data-table__cell--non-numeric">Title</th>
+        <th>on/off</th>
+        <th>Category</th>
+        <th>Series</th>
+        <th>Brand</th>
+        <th>Image</th>
+        <th>Price</th>
+        <th>Sale Price</th>
+        
+    </tr>
+  </thead>
+  <tbody>
+    {%for ar in product%}
+    <tr>
+      <td class="mdl-data-table__cell--non-numeric">
+        <a href="/manage/product?id={{ar.id}}">{{ar.title}}</a>
+      </td>
+      <td>{{ar.active}}</td>
+      
+      <td>{{ar.category.title}}</td>
+      <td>{{ar.series.title}}</td>
+      <td>{{ar.brand.title}}</td>
+      <td>  <img src="{{ static_url('images/') }}{{ar.image}}" style="width: 100px"> <br></td>
+      <td>{{ar.price}}</td>
+      <td>{{ar.sale_price}}</td>
+    </tr>
+    {%end%}
+  </tbody>
+</table>
+</div>
 
     {% end %}
   

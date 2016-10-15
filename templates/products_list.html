@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content%}
+<div class="mdl-grid">
+{%for product in items%}
+<div class="mdl-cell mdl-cell--2-col">
+  {{product.title}}<br> {{product.price}}<br>
+
+<form action="" method="POST">
+<input type="hidden" value="{{product.id}}" name="item">
+<input type="number" value="1" name="qty">
+{% module xsrf_form_html() %}
+<input type="submit" value="add to cart">
+</form>
+
+</div>
+{%end%}
+</div>
+    {% end %}
+  
+
+

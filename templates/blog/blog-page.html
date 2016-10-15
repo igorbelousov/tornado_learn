@@ -7,25 +7,19 @@
 <div class="mdl-grid ">
     <div class="mdl-cell mdl-cell--12-col "       >
        <div class="mdl-card__media ">
-        <img src="https://keyassets.timeincuk.net/inspirewp/live/wp-content/uploads/sites/21/2016/06/15-tips-Banner.jpg " style="width: 100%">
+        {%if post.image%}
+        <img src="{{ static_url('images/') }}{{post.image}}" style="width: 100%">
+        {%end%}
         
        
                    
                 </div>
           <div class="mdl-cell mdl-cell--8-col mdl-cell--2-offset-desktop">
-                    <h2>вьюыьфб</h2>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Mauris sagittis pellentesque lacus eleifend lacinia...
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Mauris sagittis pellentesque lacus eleifend lacinia...
-                  
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Mauris sagittis pellentesque lacus eleifend lacinia...
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Mauris sagittis pellentesque lacus eleifend lacinia...
+                    <h2>{{post.title}}</h2>
+                  {% raw post.content%}
                   
                 </div>
-           <div class="mdl-cell mdl-cell--2-col ">sd</div>
+           
           
     </div>
      
