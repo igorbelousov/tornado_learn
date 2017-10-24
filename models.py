@@ -9,7 +9,7 @@ from sqlalchemy.orm import scoped_session, sessionmaker, relationship, backref
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 Base = declarative_base()
-engine = create_engine('postgresql://postgres:UjhrB37@localhost/theshop', echo=False)
+engine = create_engine('postgresql://postgres:pass@localhost/basename', echo=False)
 db_session = scoped_session(sessionmaker(autocommit=False,
                                          autoflush=False,
                                          bind=engine))
